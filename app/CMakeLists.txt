@@ -34,6 +34,9 @@ add_library(libavutil STATIC IMPORTED)
 set_target_properties(libavutil PROPERTIES IMPORTED_LOCATION
         ${ffmpeg_lib_DIR}/libavutil.a)
 
+add_library(libavfilter STATIC IMPORTED)
+set_target_properties(libavfilter PROPERTIES IMPORTED_LOCATION
+        ${ffmpeg_lib_DIR}/libavfilter.a)
 add_library( # Sets the name of the library.
              native-lib
 
@@ -68,6 +71,9 @@ target_link_libraries( # Specifies the target library.
                        libswresample
                        libswscale
                        libavutil
+                       libavfilter
+                       -landroid
+                       -lz
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )

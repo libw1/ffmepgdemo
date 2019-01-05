@@ -316,12 +316,12 @@
 
 #include <time.h>
 #include <stdio.h>  /* FILE */
-#include "libavcodec/avcodec.h"
-#include "libavutil/dict.h"
-#include "libavutil/log.h"
+#include "../libavcodec/avcodec.h"
+#include "../libavutil/dict.h"
+#include "../libavutil/log.h"
 
 #include "avio.h"
-#include "libavformat/version.h"
+#include "../libavformat/version.h"
 
 struct AVFormatContext;
 
@@ -910,7 +910,7 @@ typedef struct AVStream {
      * Encoding: May be set by the caller before avformat_write_header() to
      * provide a hint to the muxer about the estimated duration.
      */
-    int64_t duration;
+    int duration;
 
     int64_t nb_frames;                 ///< number of frames in this stream if known or 0
 
@@ -2021,12 +2021,12 @@ const char *avformat_license(void);
  * @see av_register_input_format()
  * @see av_register_output_format()
  */
-attribute_deprecated
+//attribute_deprecated
 void av_register_all(void);
 
-attribute_deprecated
+//attribute_deprecated
 void av_register_input_format(AVInputFormat *format);
-attribute_deprecated
+//attribute_deprecated
 void av_register_output_format(AVOutputFormat *format);
 #endif
 
