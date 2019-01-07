@@ -27,13 +27,32 @@ class MainActivity : AppCompatActivity() {
                 }
             }.start()
         }
+        buttonSong.setOnClickListener {
+            val url = Environment.getExternalStorageDirectory().absolutePath + "/youtube-dl/Red.m4a"
+            object : Thread(){
+                override fun run() {
+                    super.run()
+                    AudioPlayer().playAudio(url)
+                }
+            }.start()
+        }
+        buttonSong_openel.setOnClickListener {
+            val url = Environment.getExternalStorageDirectory().absolutePath + "/youtube-dl/Red.m4a"
+            object : Thread(){
+                override fun run() {
+                    super.run()
+                    AudioPlayer().playAudioByOpenSL(url)
+                }
+            }.start()
+
+        }
     }
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    external fun stringFromJNI(): String
+//    external fun stringFromJNI(): String
 
     external fun run(context: Context) : Int
 

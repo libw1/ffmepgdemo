@@ -22,15 +22,15 @@ extern "C" {
 #define LOGE(format, ...)  printf("(>_<) " format "\n", ##__VA_ARGS__)
 #define LOGI(format, ...)  printf("(^_^) " format "\n", ##__VA_ARGS__)
 #endif
-extern "C" JNIEXPORT jstring
+//extern "C" JNIEXPORT jstring
 
-JNICALL
-Java_conykais_ffmepgdemo_MainActivity_stringFromJNI(
-        JNIEnv *env,
-        jobject /* this */) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
-}
+//JNICALL
+//Java_conykais_ffmepgdemo_MainActivity_stringFromJNI(
+//        JNIEnv *env,
+//        jobject /* this */) {
+//    std::string hello = "Hello from C++";
+//    return env->NewStringUTF(hello.c_str());
+//}
 extern "C" JNIEXPORT jint
 
 JNICALL
@@ -57,7 +57,7 @@ Java_conykais_ffmepgdemo_MainActivity_play(JNIEnv *env, jobject instance,jstring
     LOGI("play start");
 
     const char *file_name = env->GetStringUTFChars(url,NULL);
-    LOGI("file name : %s\n",file_name);
+//    LOGI("file name : %s\n",file_name);
 
     //register all
     av_register_all();
@@ -121,7 +121,7 @@ Java_conykais_ffmepgdemo_MainActivity_play(JNIEnv *env, jobject instance,jstring
 
     LOGI("持续时间:%02d:%d02d:%02d\n", iHour,iMinute, iSecond);
 
-    LOGI("视频时长:%02d \n", pFormatCtx->streams[videoStream]->duration);
+//    LOGI("视频时长:%02d \n", pFormatCtx->streams[videoStream]->duration);
     LOGI("持续时间:%02d \n", (int)pFormatCtx->duration);
 
     LOGI("获取解码器SUCESS");
@@ -197,10 +197,12 @@ Java_conykais_ffmepgdemo_MainActivity_play(JNIEnv *env, jobject instance,jstring
 
                 // 由于window的stride和帧的stride不同,因此需要逐行复制
                 for (int h = 0; h < videoHeight; h++) {
-                    memcpy(dst + h * srcStride, src + h * srcStride, srcStride);
+                    memcpy(dst + h * dstStride, src + h * srcStride, srcStride);
                 }
                 ANativeWindow_unlockAndPost(nativeWindow);
             }
+
+            usleep((unsigned long) (1000 * 40 * 0.3));
 
         }
         av_packet_unref(&packet);
