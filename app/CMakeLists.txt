@@ -10,10 +10,19 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+#file(GLOB my_source src/main/cpp/*.cpp src/main/cpp/*.c)
 #set(src_DIR ${CMAKE_SOURCE_DIR})
 set(ffmpeg_include_DIR ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/include)
 set(ffmpeg_lib_DIR ${CMAKE_SOURCE_DIR}/src/main/cpp/ffmpeg/lib/${CMAKE_ANDROID_ARCH_ABI})
 
+add_library( native-lib
+        SHARED
+#        ${my_source}
+        src/main/cpp/native-lib.cpp
+        src/main/cpp/native2-lib.cpp
+        src/main/cpp/FFmpegMusic.cpp
+        src/main/cpp/FFmpegVideo.cpp
+        )
 add_library(libavformat STATIC IMPORTED)
 set_target_properties(libavformat PROPERTIES IMPORTED_LOCATION
         ${ffmpeg_lib_DIR}/libavformat.a)
@@ -37,14 +46,14 @@ set_target_properties(libavutil PROPERTIES IMPORTED_LOCATION
 add_library(libavfilter STATIC IMPORTED)
 set_target_properties(libavfilter PROPERTIES IMPORTED_LOCATION
         ${ffmpeg_lib_DIR}/libavfilter.a)
-add_library( # Sets the name of the library.
-             native-lib
-
-             # Sets the library as a shared library.
-             SHARED
-
-             # Provides a relative path to your source file(s).
-             src/main/cpp/native-lib.cpp )
+#add_library( # Sets the name of the library.
+#             native-lib
+#
+#              Sets the library as a shared library.
+#             SHARED
+#
+#              Provides a relative path to your source file(s).
+#             src/main/cpp/native-lib.cpp )
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -74,6 +83,7 @@ target_link_libraries( # Specifies the target library.
                        libavfilter
                        -landroid
                        -lz
+                        -lOpenSLES #openSLES
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )

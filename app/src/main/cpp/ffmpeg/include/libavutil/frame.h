@@ -535,7 +535,7 @@ typedef struct AVFrame {
     /**
      * QP table
      */
-    attribute_deprecated
+//    attribute_deprecated
     int8_t *qscale_table;
     /**
      * QP store stride
@@ -546,7 +546,7 @@ typedef struct AVFrame {
     attribute_deprecated
     int qscale_type;
 
-    attribute_deprecated
+//    attribute_deprecated
     AVBufferRef *qp_table_buf;
 #endif
     /**
@@ -601,7 +601,7 @@ typedef struct AVFrame {
  * Accessors for some AVFrame fields. These used to be provided for ABI
  * compatibility, and do not need to be used anymore.
  */
-attribute_deprecated
+//attribute_deprecated
 int64_t av_frame_get_best_effort_timestamp(const AVFrame *frame);
 attribute_deprecated
 void    av_frame_set_best_effort_timestamp(AVFrame *frame, int64_t val);
