@@ -46,7 +46,9 @@ add_library( # Sets the name of the library.
              # Provides a relative path to your source file(s).
              src/main/cpp/native-lib.cpp
              src/main/cpp/audio_player.c
-             src/main/cpp/openSL_audio_player )
+             src/main/cpp/media_player.c
+             src/main/cpp/AVpacket_queue.c
+             src/main/cpp/openSL_audio_player)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by

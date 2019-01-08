@@ -164,7 +164,7 @@ void av_image_copy_uc_from(uint8_t *dst_data[4],       const ptrdiff_t dst_lines
  * @return the size in bytes required for src, a negative error code
  * in case of failure
  */
-int av_image_fill_arrays(uint8_t *dst_data[8], int dst_linesize[8], uint8_t *src, AVPixelFormat pix_fmt,
+int av_image_fill_arrays(uint8_t *dst_data[8], int dst_linesize[8], uint8_t *src, enum AVPixelFormat pix_fmt,
                          int width, int height, int i);
 
 /**
